@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    
+    <navigation-rule>
+        <description>General Navigation</description>
+        <from-view-id>view/*</from-view-id>
+        
+
+        <navigation-case>
+            <from-outcome>users</from-outcome>
+            <to-view-id>view/loginRegister.xhtml</to-view-id>
+        </navigation-case>
+       
+        <navigation-case>
+            <from-outcome>hotels</from-outcome>
+            <to-view-id>view/hotels.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>hotelDetail</from-outcome>
+            <to-view-id>view/hotelDetail.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>bookingDetail</from-outcome>
+            <to-view-id>view/bookingDetail.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>bookings</from-outcome>
+            <to-view-id>view/bookings.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>admin</from-outcome>
+            <to-view-id>view/admin.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>adminAuthentification</from-outcome>
+            <to-view-id>view/adminAuthentification.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>view/login.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>loginOrRegister</from-outcome>
+            <to-view-id>view/loginRegister.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>bookingFail</from-outcome>
+            <to-view-id>view/bookingFail.xhtml</to-view-id>
+        </navigation-case>
+        
+    </navigation-rule>
+    
+</faces-config>

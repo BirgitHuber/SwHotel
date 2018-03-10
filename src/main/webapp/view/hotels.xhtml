@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <title>Sw Hotels</title>
+         </h:head>
+    <h:body>
+        <ui:composition template="../WEB-INF/template.xhtml">
+
+             <ui:define name="content">
+                 
+                 <div class="page-header">
+                     <h2>
+                         Book your stay!
+                     </h2>
+                 </div>
+                 
+                   
+                 
+                 <h:form>
+                    <div>
+                        <p>when do you arrive?</p>
+                        <div class="col-sm-2">
+                        <h:inputText class="form-control" value="#{hotelModel.dateDay}"/>
+                        </div>
+                        <div class="col-sm-2">
+                        <h:inputText class="form-control" value="#{hotelModel.dateMonth}"/>
+                        </div>
+                        <div class="col-sm-4">
+                        <h:inputText class="form-control" value="#{hotelModel.dateYear}"/>
+                        </div>
+                     </div>
+                     <div >
+                         <p>how many nights do you want to stay?</p>
+                        <div class="col-sm-2">
+                        <h:inputText class="form-control " value="#{hotelModel.nights}"/>
+                        </div>
+                     </div>
+                    
+                 
+                 
+                 
+                    <h:dataTable class="table" var="h" value="#{hotelModel.hotels}">
+                        
+                        <h:column>
+                            <f:facet name="header">Hotel</f:facet>
+                            <h:outputText value="#{h.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">City</f:facet>
+                            <h:outputText value="#{h.address.city}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Country</f:facet>
+                            <h:outputText value="#{h.address.country}"/>
+                        </h:column>
+                        <h:column>
+                            <div  class="btn btn-success">
+                                <h:commandLink action="#{hotelModel.showDetail(h)}" value=">"/>
+                            </div>
+                        </h:column>
+                    </h:dataTable>
+                 </h:form>
+                 
+             </ui:define>
+         </ui:composition>
+    </h:body>
+</html>
+
+<!--
+<h:form>
+                     <h:inputText value="#{hotelModel.search}"/>
+                     <h:commandButton action="#{hotelModel.searchHotel()}" value="search"/>
+                   -->

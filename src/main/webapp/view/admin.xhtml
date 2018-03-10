@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Sw-Hotels</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../WEB-INF/template.xhtml">
+
+             <ui:define name="content">
+           
+                 <div  class="alert alert-info" role="alert">
+                     <h:outputText value ="#{adminModel.infoMessage}"/>
+                 </div>
+           
+        <div class="panel panel-info">  
+            <div class="panel-header">
+                <div class="page-header"> 
+                    <h2>
+                        Hotel
+                    </h2>
+                </div>
+            </div>
+            <div class="panel-body">
+        <h:form>
+            <div class="col-sm-2">
+            Name
+            <h:inputText class="form-control" value="#{adminModel.hotelName}"/>
+            </div>
+            <div class="col-sm-2">
+            city
+            <h:inputText class="form-control" value="#{adminModel.city}"/>
+            </div>
+            <div class="col-sm-2">
+            country
+            <h:inputText class="form-control" value="#{adminModel.country}"/>
+            </div>
+            <div class="col-sm-2">
+            address
+            <h:inputText class="form-control" value="#{adminModel.hotelAddress}"/>
+            </div>
+            <div class="col-sm-2">
+            price factor
+            <h:inputText class="form-control" value="#{adminModel.priceFactor}"/>
+            </div>
+            <div class="col-sm-4">
+            info
+            <h:inputTextarea class="form-control" value="#{adminModel.hotelInfo}"/>
+            </div>
+             <div  class="btn btn-danger">
+                                <h:commandLink action="#{adminModel.addHotel()}" value="+"/>
+                         </div>
+               </h:form>
+        
+        <h:form>
+            
+             <h:dataTable class="table" var="h" value="#{adminModel.hotelList}">
+                        <h:column>
+                            <f:facet name="header">Hotel Name</f:facet>
+                            <h:outputText value="#{h.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">City</f:facet>
+                            <h:outputText value="#{h.address.city}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Country</f:facet>
+                            <h:outputText value="#{h.address.country}"/>
+                        </h:column>
+                 <h:column>
+                      <div  class="btn btn-danger">
+                                <h:commandLink action="#{adminModel.deleteHotel(h)}" value="X"/>
+                         </div>
+                 </h:column>
+                        
+                    </h:dataTable>
+        </h:form>
+            </div>
+        </div>
+                
+        <!-- **************************************************-->
+       <div class="panel panel-warning">  
+            <div class="panel-header">       
+        
+            <h2>
+            RoomType
+            </h2>
+            </div>
+           <div class="panel-body">
+        <h:form>
+            <div class="col-sm-2">
+            room type name
+            <h:inputText class="form-control" value="#{adminModel.roomTypeName}"/>
+            </div>
+            <div class="col-sm-2">
+            beds
+            <h:inputText class="form-control" value="#{adminModel.beds}"/>
+            </div>
+            <div class="col-sm-2">
+            price
+            <h:inputText class="form-control" value="#{adminModel.standardPrice}"/>
+            </div>
+             <div  class="btn btn-warning">
+                                <h:commandLink action="#{adminModel.addRoomType()}" value="+"/>
+                         </div>
+        </h:form>
+        
+        <h:form>
+        
+             <h:dataTable class="table" var="rt" value="#{adminModel.roomTypeList}">
+                        <h:column>
+                            <f:facet name="header">Room Name</f:facet>
+                            <h:outputText value="#{rt.roomName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"># Beds</f:facet>
+                            <h:outputText value="#{rt.beds}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Standard Price</f:facet>
+                            <h:outputText value="#{rt.standardPrice}"/>
+                        </h:column>
+                        
+                        <h:column>
+                             <div  class="btn btn-warning">
+                                <h:commandLink action="#{adminModel.deleteRoomType(rt)}" value="X"/>
+                         </div>
+                        </h:column>
+                    </h:dataTable>
+        </h:form>
+           </div>
+       </div>
+        
+        
+        <!-- ********************************************************************-->  
+        <div class="panel panel-danger">
+        <div class="panel-header">
+        <div class="page-header"> 
+            <h2>
+            Room 
+            </h2>
+        </div>
+        </div>
+              
+        <div class="panel-body">
+        <h:form>
+            roomType
+            <h:selectOneMenu value="#{adminModel.currentRoomTypeRoomSelection}"
+                             >
+                <f:converter binding="#{roomTypeConverter}"/>
+                <f:selectItems value="#{adminModel.roomTypeList}" var="r" 
+                               itemLabel="#{r.roomName} #{r.beds}" />  
+            </h:selectOneMenu>
+            hotel
+            <h:selectOneMenu value="#{adminModel.currentHotelRoomSelection}"
+                             >
+                     <f:converter binding="#{hotelConverter}"/>
+                     <f:selectItems value="#{adminModel.hotelList}" var="h" 
+                                    itemLabel="#{h.name} #{h.address.city}" />  
+            </h:selectOneMenu>
+          
+             <div  class="btn btn-success">
+                                <h:commandLink action="#{adminModel.addRoom()}" value="+"/>
+                         </div>
+        </h:form>
+        
+        <h:form>
+        
+             <h:dataTable class="table" var="r" value="#{adminModel.roomList}">
+                        
+                        <h:column>
+                            <f:facet name="header">Hotel</f:facet>
+                            <h:outputText value="#{r.hotel.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Room Type</f:facet>
+                            <h:outputText value="#{r.roomType.roomName}"/>
+                        </h:column>
+                         <h:column>
+                             <f:facet name="header"># Beds per Room</f:facet>
+                             <h:outputText value="#{r.roomType.beds}"/>
+                        </h:column>
+                        <h:column>
+                             <f:facet name="header">Room Price</f:facet>
+                             <h:outputText value="#{r.price}"/>
+                        </h:column>
+                        <h:column>
+                             <div  class="btn btn-success">
+                                <h:commandLink action="#{adminModel.deleteRoom(r)}" value="X"/>
+                         </div>
+                        </h:column>
+   
+                    </h:dataTable>
+        </h:form>
+        </div>
+             </div>
+                 
+             </ui:define>
+         </ui:composition>
+    </h:body>
+</html>
+
